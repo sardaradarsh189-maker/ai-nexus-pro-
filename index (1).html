@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090b18">
+<title>AI Nexus Pro | Discover AI</title>
+<style>
+:root{
+ --bg:#090b18;--panel:#11162a;--card:#171e36;
+ --text:#f6f5ff;--muted:#a5abc3;--accent:#9870ff;
+ --border:#2a3150;--input:#10162b;
+}
+body.light{
+ --bg:#f3f4fc;--panel:#fff;--card:#fff;
+ --text:#191a2e;--muted:#666c82;--accent:#7049e8;
+ --border:#dfe1ef;--input:#fff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+ margin:0;background:var(--bg);color:var(--text);
+ font-family:Arial,sans-serif;transition:.2s;
+}
+button,input,select{font:inherit}
+header{
+ position:sticky;top:0;z-index:10;
+ background:var(--panel);border-bottom:1px solid var(--border);
+ padding:15px 6%;display:flex;justify-content:space-between;
+ align-items:center;gap:15px;flex-wrap:wrap;
+}
+.brand{font-size:24px;font-weight:900;letter-spacing:1px}
+.brand span,.gradient{color:var(--accent)}
+.tagline{font-size:11px;color:var(--muted);margin-top:4px}
+.nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.btn{
+ border:1px solid var(--border);background:var(--card);
+ color:var(--text);padding:10px 14px;border-radius:10px;
+ cursor:pointer;text-decoration:none;font-size:13px;
+}
+.btn:hover{border-color:var(--accent)}
+.hero{
+ text-align:center;padding:65px 15px 35px;
+ background:radial-gradient(ellipse at top,#30205b 0%,transparent 65%);
+}
+.hero h1{font-size:clamp(34px,7vw,60px);margin:0 0 14px}
+.hero p{color:var(--muted);line-height:1.7;max-width:650px;margin:auto}
+.search{
+ max-width:690px;margin:28px auto 0;display:flex;
+ gap:10px;padding:0 12px;
+}
+.search input{
+ flex:1;min-width:0;padding:16px;
+ border:1px solid var(--border);border-radius:12px;
+ background:var(--input);color:var(--text);outline:none;
+}
+.stats{
+ display:flex;justify-content:center;gap:35px;
+ flex-wrap:wrap;margin-top:28px;
+}
+.stat strong{display:block;font-size:23px;color:var(--accent)}
+.stat small{color:var(--muted)}
+.filters{
+ display:flex;justify-content:center;gap:9px;
+ flex-wrap:wrap;padding:20px 12px;
+}
+select{
+ padding:11px;background:var(--input);color:var(--text);
+ border:1px solid var(--border);border-radius:10px;
+}
+.section{
+ padding:10px 6% 0;display:flex;
+ justify-content:space-between;align-items:center;flex-wrap:wrap;
+}
+.section h2{font-size:23px}
+#count{font-size:13px;color:var(--muted)}
+.grid{
+ padding:18px 6% 55px;
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+ gap:17px;
+}
+.card{
+ background:var(--card);border:1px solid var(--border);
+ padding:20px;border-radius:17px;position:relative;
+ transition:.2s;min-width:0;
+}
+.card:hover{transform:translateY(-5px);border-color:var(--accent)}
+.logo{
+ width:58px;height:58px;border-radius:14px;background:white;
+ display:flex;align-items:center;justify-content:center;
+ padding:7px;margin-bottom:15px;overflow:hidden;
+}
+.logo img{width:100%;height:100%;object-fit:contain}
+.fallback{display:none;color:#222;font-size:23px;font-weight:900}
+.card h3{font-size:18px;margin:0 0 8px}
+.card p{font-size:13px;color:var(--muted);line-height:1.55;min-height:40px}
+.pills{display:flex;gap:7px;flex-wrap:wrap;margin:13px 0}
+.pill{font-size:11px;padding:6px 9px;border-radius:20px;background:#30254d;color:#dfd0ff}
+.pill.free{background:#153c30;color:#a4f0ce}
+.pill.paid{background:#49351c;color:#ffdda7}
+.open{
+ display:block;text-align:center;text-decoration:none;
+ color:white;background:var(--accent);padding:11px;
+ border-radius:10px;font-weight:bold;font-size:13px;
+}
+.fav{
+ position:absolute;right:14px;top:13px;
+ border:0;background:none;color:var(--muted);
+ font-size:25px;cursor:pointer;
+}
+.fav.active{color:#ffca55}
+.empty{grid-column:1/-1;text-align:center;padding:55px;color:var(--muted)}
+.info{
+ margin:0 6% 45px;padding:25px;background:var(--panel);
+ border:1px solid var(--border);border-radius:17px;
+}
+.info h2{margin-top:0}
+.info p{color:var(--muted);line-height:1.7}
+footer{
+ padding:30px 6%;text-align:center;background:var(--panel);
+ border-top:1px solid var(--border);color:var(--muted);
+ font-size:13px;line-height:1.8;
+}
+footer a{color:var(--accent);text-decoration:none}
+@media(max-width:550px){
+ header{padding:13px 4%}
+ .brand{font-size:21px}
+ .hero{padding-top:45px}
+ .search{flex-direction:column}
+ .grid{padding-left:4%;padding-right:4%}
+ .section{padding-left:4%;padding-right:4%}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div>
+  <div class="brand">AI NEXUS <span>PRO</span></div>
+  <div class="tagline">YOUR GATEWAY TO ARTIFICIAL INTELLIGENCE</div>
+ </div>
+ <nav class="nav">
+  <a href="#tools" class="btn">Explore Tools</a>
+  <a href="#about" class="btn">About</a>
+  <button class="btn" id="theme">☀️ Theme</button>
+ </nav>
+</header>
+
+<section class="hero">
+ <h1>Discover the Power of <span class="gradient">AI</span></h1>
+ <p>Explore powerful AI tools for creativity, learning, productivity,
+ coding, images, videos and much more — all in one place.</p>
+ <div class="search">
+  <input id="search" type="search" placeholder="🔍 Search AI tools...">
+  <button class="btn" id="reset">Reset</button>
+ </div>
+ <div class="stats">
+  <div class="stat"><strong>50+</strong><small>AI Tools</small></div>
+  <div class="stat"><strong>7</strong><small>Categories</small></div>
+  <div class="stat"><strong>1</strong><small>AI Directory</small></div>
+ </div>
+</section>
+
+<section id="tools">
+ <div class="filters">
+  <select id="category">
+   <option value="All">All Categories</option>
+  </select>
+  <select id="access">
+   <option value="All">All Access</option>
+   <option value="Free">Free</option>
+   <option value="Freemium">Freemium</option>
+   <option value="Paid">Paid</option>
+  </select>
+  <button class="btn" id="favorites">⭐ Favourites</button>
+  <button class="btn" id="showAll">All Tools</button>
+ </div>
+
+ <div class="section">
+  <h2>Explore AI Tools</h2>
+  <span id="count"></span>
+ </div>
+ <main class="grid" id="grid"></main>
+</section>
+
+<section class="info" id="about">
+ <h2>About <span class="gradient">AI Nexus Pro</span></h2>
+ <p>AI Nexus Pro is an AI tools discovery directory.
+Find useful tools for writing, image creation, video editing,
+coding, research, audio and productivity.</p>
+ <p>Choose a tool and visit its official website to explore its features.
+Availability, pricing and free plans may change.</p>
+</section>
+
+<footer>
+ <strong>AI NEXUS PRO</strong><br>
+ Discover. Explore. Create.<br>
+ © 2026 AI Nexus Pro. All rights reserved.<br>
+ <a href="#tools">Explore AI Tools</a> ·
+ <a href="#about">About Us</a>
+</footer>
+
+<script>
+const tools = [
+["ChatGPT","AI Chat","Freemium","https://chatgpt.com","AI assistant for writing, learning and ideas."],
+["Gemini","AI Chat","Freemium","https://gemini.google.com","Google AI assistant."],
+["Claude","AI Chat","Freemium","https://claude.ai","AI assistant for writing and reasoning."],
+["Microsoft Copilot","AI Chat","Freemium","https://copilot.microsoft.com","Microsoft AI assistant."],
+["Perplexity","Research","Freemium","https://www.perplexity.ai","AI search and research."],
+["Poe","AI Chat","Freemium","https://poe.com","Explore different AI bots."],
+["Character AI","AI Chat","Freemium","https://character.ai","Chat with AI characters."],
+["DeepSeek","AI Chat","Freemium","https://www.deepseek.com","AI chat and reasoning."],
+["Mistral AI","AI Chat","Freemium","https://mistral.ai","AI models and assistants."],
+["Hugging Face","Research","Freemium","https://huggingface.co","Discover AI models."],
+
+["Canva","AI Image","Freemium","https://www.canva.com","Design graphics and presentations."],
+["Adobe Firefly","AI Image","Freemium","https://firefly.adobe.com","AI image creation."],
+["Leonardo AI","AI Image","Freemium","https://leonardo.ai","Generate creative images."],
+["Ideogram","AI Image","Freemium","https://ideogram.ai","AI image and text design."],
+["Midjourney","AI Image","Paid","https://www.midjourney.com","AI image generation."],
+["Playground AI","AI Image","Freemium","https://playground.com","Create and edit images."],
+["DreamStudio","AI Image","Paid","https://dreamstudio.ai","Stable Diffusion image generation."],
+["Krea AI","AI Image","Freemium","https://www.krea.ai","AI creative tools."],
+["Microsoft Designer","AI Image","Freemium","https://designer.microsoft.com","AI design assistant."],
+["Remove.bg","AI Image","Freemium","https://www.remove.bg","Remove image backgrounds."],
+
+["Runway","AI Video","Freemium","https://runwayml.com","AI video creation."],
+["Pika","AI Video","Freemium","https://pika.art","Create videos with AI."],
+["InVideo AI","AI Video","Freemium","https://invideo.io","Turn ideas into videos."],
+["Synthesia","AI Video","Paid","https://www.synthesia.io","AI presenter videos."],
+["HeyGen","AI Video","Freemium","https://www.heygen.com","AI avatar videos."],
+["VEED","AI Video","Freemium","https://www.veed.io","Online video editing."],
+["Kapwing","AI Video","Freemium","https://www.kapwing.com","Video editing tools."],
+["Luma AI","AI Video","Freemium","https://lumalabs.ai","AI video and creative tools."],
+["OpusClip","AI Video","Freemium","https://www.opus.pro","Create short clips."],
+["Descript","AI Video","Freemium","https://www.descript.com","Edit audio and video."],
+
+["GitHub Copilot","Coding","Freemium","https://github.com/features/copilot","AI coding assistant."],
+["Cursor","Coding","Freemium","https://cursor.com","AI code editor."],
+["Replit","Coding","Freemium","https://replit.com","Build projects online."],
+["Windsurf","Coding","Freemium","https://windsurf.com","AI development environment."],
+["Bolt","Coding","Freemium","https://bolt.new","Build web projects with prompts."],
+["Lovable","Coding","Freemium","https://lovable.dev","Create apps with AI."],
+["v0","Coding","Freemium","https://v0.app","Generate user interfaces."],
+["CodePen","Coding","Freemium","https://codepen.io","Experiment with front-end code."],
+["StackBlitz","Coding","Freemium","https://stackblitz.com","Build web apps in browser."],
+["Tabnine","Coding","Freemium","https://www.tabnine.com","AI coding assistance."],
+
+["Grammarly","Writing","Freemium","https://www.grammarly.com","Writing and grammar assistance."],
+["QuillBot","Writing","Freemium","https://quillbot.com","Paraphrase and improve writing."],
+["DeepL","Writing","Freemium","https://www.deepl.com","Translate text between languages."],
+["Jasper","Writing","Paid","https://www.jasper.ai","AI writing and marketing."],
+["Writesonic","Writing","Freemium","https://writesonic.com","AI content creation."],
+["Wordtune","Writing","Freemium","https://www.wordtune.com","Rewrite and improve sentences."],
+
+["ElevenLabs","AI Audio","Freemium","https://elevenlabs.io","AI voice and audio."],
+["Suno","AI Audio","Freemium","https://suno.com","Create music with AI."],
+["Udio","AI Audio","Freemium","https://www.udio.com","AI music creation."],
+["Otter AI","Productivity","Freemium","https://otter.ai","Meeting notes and transcription."],
+["Notion","Productivity","Freemium","https://www.notion.com","Notes and workspace."],
+["Trello","Productivity","Freemium","https://trello.com","Organize projects and tasks."]
+];
+
+const $ = id => document.getElementById(id);
+let favs = new Set(JSON.parse(localStorage.getItem("nexusFavs") || "[]"));
+let favOnly = false;
+
+const cats = [...new Set(tools.map(t => t[1]))];
+cats.forEach(c => {
+ const op = document.createElement("option");
+ op.value = c; op.textContent = c;
+ $("category").appendChild(op);
+});
+
+function render(){
+ const q = $("search").value.trim().toLowerCase();
+ const cat = $("category").value;
+ const acc = $("access").value;
+
+ const results = tools.filter(t =>
+  (t.join(" ").toLowerCase().includes(q)) &&
+  (cat === "All" || t[1] === cat) &&
+  (acc === "All" || t[2] === acc) &&
+  (!favOnly || favs.has(t[0]))
+ );
+
+ $("grid").innerHTML = "";
+ $("count").textContent = results.length + " tools found";
+
+ if(!results.length){
+  $("grid").innerHTML = '<div class="empty">No tools found. Try another search.</div>';
+  return;
+ }
+
+ results.forEach(t => {
+  const [name,cat,access,url,desc] = t;
+  const domain = new URL(url).hostname;
+  const logoURL = "https://www.google.com/s2/favicons?domain=" +
+                  encodeURIComponent(domain) + "&sz=128";
+  const card = document.createElement("article");
+  card.className = "card";
+  const isFav = favs.has(name);
+
+  card.innerHTML = `
+   <button class="fav ${isFav ? "active" : ""}" aria-label="Favourite">
+    ${isFav ? "★" : "☆"}
+   </button>
+   <div class="logo">
+    <img alt="${name} logo">
+    <span class="fallback">${name.charAt(0)}</span>
+   </div>
+   <h3>${name}</h3>
+   <p>${desc}</p>
+   <div class="pills">
+    <span class="pill">${cat}</span>
+    <span class="pill ${access === "Free" ? "free" : access === "Paid" ? "paid" : ""}">${access}</span>
+   </div>
+   <a class="open" href="${url}" target="_blank" rel="noopener noreferrer">
+    Visit Official Website ↗
+   </a>
+  `;
+
+  const img = card.querySelector("img");
+  const fallback = card.querySelector(".fallback");
+  img.src = logoURL;
+  img.onerror = () => {
+   img.style.display = "none";
+   fallback.style.display = "block";
+  };
+
+  card.querySelector(".fav").onclick = () => {
+   if(favs.has(name)) favs.delete(name);
+   else favs.add(name);
+   localStorage.setItem("nexusFavs",JSON.stringify([...favs]));
+   render();
+  };
+  $("grid").appendChild(card);
+ });
+}
+
+$("search").addEventListener("input",render);
+$("category").addEventListener("change",render);
+$("access").addEventListener("change",render);
+
+$("favorites").onclick = () => {
+ favOnly = true; render();
+};
+$("showAll").onclick = () => {
+ favOnly = false; render();
+};
+$("reset").onclick = () => {
+ $("search").value = "";
+ $("category").value = "All";
+ $("access").value = "All";
+ favOnly = false;
+ render();
+};
+
+if(localStorage.getItem("nexusTheme") === "light"){
+ document.body.classList.add("light");
+}
+function updateThemeButton(){
+ $("theme").textContent =
+ document.body.classList.contains("light") ? "🌙 Dark Mode" : "☀️ Light Mode";
+}
+updateThemeButton();
+
+$("theme").onclick = () => {
+ document.body.classList.toggle("light");
+ localStorage.setItem("nexusTheme",
+  document.body.classList.contains("light") ? "light" : "dark");
+ updateThemeButton();
+};
+
+render();
+</script>
+</body>
+</html>
